@@ -1,0 +1,31 @@
+readme.html<br>
+package installed in `date`.<br>
+<br>
+RTMixManager™ version $currentver<br>
+developed by LENAROX.<br>
+<br>
+this engine will solve any lags and crashes on games, heavy apps and so on.<br>
+which most of the mid-range android gamers have always wanted;)<br>
+rock your RAM Manager like a Windows NT!!!(da well known BOSS of RAM Management), you know what i mean.:p<br>
+ATTENTION!!! this engine requires the latest busybox version FROM stericson, installed to run properly.<br>
+reminder: this engine is designed to run in the background realtime(yeah, RT lol:p) with the android ram management,<br>
+therefore it should NOT be used with other script applications.<br>
+<br>
+thanks to many xda devs who have helped me to develop better codes!<br>
+thanks to chainfire for touchscreen responsiveness tweak.<br>
+thanks to shantam for Netweaks.<br>
+thanks to professionals from stackoverflow.com who gave me some good advices!<br>
+thanks to mv style for lupus kernel script.<br>
+thanks to zeppelinrox for the script design, and the bugfix!<br>
+thanks to gu5t3r for the bugfix:)<br>
+<br>
+dirty hack<br>
+<a href="http://www.gentoo-wiki.info/Gigabyte_GA-G33M-S2H">http://www.gentoo-wiki.info/Gigabyte_GA-G33M-S2H</a><br>
+<a href="http://www.sysxperts.com/home/announce/vmdirtyratioandvmdirtybackgroundratio">http://www.sysxperts.com/home/announce/vmdirtyratioandvmdirtybackgroundratio</a><br>
+<br>
+android lmk<br>
+<a href="http://dalinaum-kr.tumblr.com/post/4528344482/android-low-memory-killer">http://dalinaum-kr.tumblr.com/post/4528344482/android-low-memory-killer</a><br>
+<br>
+<b>do not steal this script installer or the script that is being installed by this installer.<br>
+you must always ask me for any permission thats related to this script,
+and give a credit by linking to this thread <a href="http://forum.xda-developers.com/showthread.php?t=2076101">here</a>.</b><br>
