@@ -1,0 +1,29 @@
+#RTMixManager™ packages installer.
+#developed by LENAROX.
+#
+#this engine will solve any lags and crashes on games, heavy apps and so on.
+#which most of the mid-range android gamers have always wanted;)
+#rock your RAM Manager like a Windows NT!!!(da well known BOSS of RAM Management), you know what i mean.:p
+#ATTENTION!!! this engine requires the latest busybox version FROM stericson, installed to run properly.
+#reminder: this engine is designed to run in the background realtime(yeah, RT lol:p) with the android ram management,
+#therefore it should NOT be used with other script applications.
+#
+#thanks to many xda devs who have helped me to develop better codes!
+#thanks to chainfire for touchscreen responsiveness tweak.
+#thanks to shantam for Netweaks.
+#thanks to professionals from stackoverflow.com who gave me some good advices!
+#thanks to mv style for lupus kernel script.
+#thanks to zeppelinrox for the script design, and the bugfix!
+#thanks to gu5t3r for the bugfix:)
+#
+##dirty hack
+#http://www.gentoo-wiki.info/Gigabyte_GA-G33M-S2H
+#http://www.sysxperts.com/home/announce/vmdirtyratioandvmdirtybackgroundratio
+#
+##android lmk
+#http://dalinaum-kr.tumblr.com/post/4528344482/android-low-memory-killer
+#
+#do not steal this script installer or the script that is being installed by this installer.
+#you must always ask me for any permission thats related to this script,
+#and give a credit by linking to this thread: http://forum.xda-developers.com/showthread.php?t=2076101
+
