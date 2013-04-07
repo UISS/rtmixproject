@@ -1,0 +1,45 @@
+#Core Engine 2.2
+#alternative to renice processes method.
+setprop ENFORCE_PROCESS_LIMIT false
+#RT-Styled engine.
+(while true; do
+	if [ -e "/sys/module/lowmemorykiller/parameters/adj" ]; then
+		if [ "\`cat /proc/\`pgrep launcher\`/oom_adj\`" != -16 ] || [ "\`cat /proc/\`pgrep acore\`/oom_adj\`" != -12 ]; then
+			echo "-16" > /proc/\`pgrep launcher\`/oom_adj
+			echo "-12" > /proc/\`pgrep acore\`/oom_adj
+			if [ \`cat /sys/module/lowmemorykiller/parameters/adj\` != 0,1,2,6,9,15 ]; then
+				echo "0,1,2,6,9,15" > /sys/module/lowmemorykiller/parameters/adj
+			fi
+		fi 2>/dev/null
+	fi
+	core_minfree_limiter_strength=\`cat /system/etc/usrsettings | grep core_minfree_limiter_strength | sed 's/core_minfree_limiter_strength=//'\`
+	MFK=\`cat /proc/sys/vm/min_free_kbytes\`
+	TOTALMEM=\`free | awk '{ print \$2 }' | sed -n 2p\`
+	REALTOTALMEM=\$((\$TOTALMEM-\$MFK))
+	cachepage=\$((\$REALTOTALMEM/24))
+	lowpage=\$((\$MFK/4))
+	if [ -e "/sys/module/lowmemorykiller/parameters/minfree" ]; then
+		if [ "\$core_minfree_limiter_strength" == 0 ]; then
+			if [ \`cat /sys/module/lowmemorykiller/parameters/minfree\` != "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$lowpage" ]; then
+				echo "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$lowpage" > /sys/module/lowmemorykiller/parameters/minfree
+			fi
+		elif [ "\$core_minfree_limiter_strength" == 1 ]; then
+			if [ \`cat /sys/module/lowmemorykiller/parameters/minfree\` != "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" ]; then
+				echo "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" > /sys/module/lowmemorykiller/parameters/minfree
+			fi
+		elif [ "\$core_minfree_limiter_strength" == 2 ]; then
+			if [ \`cat /sys/module/lowmemorykiller/parameters/minfree\` != "\$lowpage,\$cachepage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" ]; then
+				echo "\$lowpage,\$cachepage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" > /sys/module/lowmemorykiller/parameters/minfree
+			fi
+		else
+			if [ \`cat /sys/module/lowmemorykiller/parameters/minfree\` != "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" ]; then
+				echo "\$lowpage,\$lowpage,\$cachepage,\$lowpage,\$lowpage,\$cachepage" > /sys/module/lowmemorykiller/parameters/minfree
+			fi
+		fi 2>/dev/null
+	fi
+	core_refresh_sec_interval=\`cat /system/etc/usrsettings | grep core_refresh_sec_interval | sed 's/core_refresh_sec_interval=//'\`
+	if [ "\$core_refresh_sec_interval" -le 0 ]; then
+		core_refresh_sec_interval=4
+	fi 2>/dev/null
+	sleep \$core_refresh_sec_interval
+done &)
