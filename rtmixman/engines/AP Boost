@@ -1,0 +1,20 @@
+#AP boost
+MFK=\`cat /proc/sys/vm/min_free_kbytes\`
+TOTALMEM=\`free | awk '{ print \$2 }' | sed -n 2p\`
+REALTOTALMEM=\$((\$TOTALMEM-\$MFK))
+STATIC=\$((\$REALTOTALMEM/6144))
+if getprop | grep -q dalvik.vm.heapgrowthlimit; then
+	setprop dalvik.vm.heapsize "\$STATIC"m
+	setprop dalvik.vm.heapgrowthlimit "\$STATIC"m
+	if [ "\$REALTOTALMEM" -le 524288 ]; then
+		setprop dalvik.vm.heapstartsize 5m
+	elif [ "\$REALTOTALMEM" -le 1048576 ]; then
+		setprop dalvik.vm.heapstartsize 8m
+	elif [ "\$REALTOTALMEM" -le 2097152 ]; then
+		setprop dalvik.vm.heapstartsize 16m
+	else
+		setprop dalvik.vm.heapstartsize 16m
+	fi
+else
+	setprop dalvik.vm.heapsize "\$STATIC"m
+fi
